@@ -2,11 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import EmailSender from "./sendEmail.js";
-import path from 'path';
+
 
 dotenv.config();
 
-const __dirname = path.resolve();
+
 
 const app = express();
 app.use(express.json());
@@ -29,11 +29,8 @@ app.post("/api", async (req, res) => {
 });
 
 
-app.use(express.static(path.join(__dirname, 'client/dist')))
 
-app.get('*',(req,res)=>{
-  res.sendFile(path.join(__dirname,'client','dist','index.html'))
-})
+
 
 
 app.listen(port, () => {
