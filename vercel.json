@@ -9,7 +9,11 @@
   ],
   "routes": [
     {
-      "handle": "vercel"
+      "src": "/api/(.*)",
+      "dest": "index.js"
+    },
+    {
+      "handle": "filesystem"
     }
   ]
 }
