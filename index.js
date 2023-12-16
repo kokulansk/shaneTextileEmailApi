@@ -18,7 +18,7 @@ app.use(
 
 const port = process.env.PORT || 8080;
 
-app.post("/send", async (req, res) => {
+app.post("/api", async (req, res) => {
   try {
     const { fullName, email, phone, message } = req.body;
     EmailSender({ fullName, email, phone, message });
