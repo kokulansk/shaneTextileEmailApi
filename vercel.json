@@ -1,17 +1,16 @@
 {
   "version": 2,
-  "name": "shanetextile",
+  "name": "toronto",
   "builds": [
     {
-      "src": "index.js",
+      "src": "index.js", 
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/(.*)",
       "dest": "index.js"
     }
-   
   ]
 }
