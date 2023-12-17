@@ -15,7 +15,9 @@ app.use(cors({
   origin: '*'
 }));
 
-
+app.use("/",(req,res)=>{
+  res.send("Welcome to the server")
+})
 const port = process.env.PORT || 5000;
 
 app.post("/api", async (req, res) => {
