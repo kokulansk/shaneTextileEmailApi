@@ -1,3 +1,19 @@
+
+
+
 {
-  "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+  "version": 2,
+  "name": "toronto",
+  "builds": [
+    {
+      "src": "index.js", 
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "index.js" 
+    }
+  ]
 }
