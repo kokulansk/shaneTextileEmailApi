@@ -3,7 +3,7 @@
 
 {
   "version": 2,
-  "name": "toronto",
+  "name": "shanetextile",
   "builds": [
     {
       "src": "index.js", 
