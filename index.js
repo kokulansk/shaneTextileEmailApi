@@ -15,7 +15,7 @@ app.use(
   })
 );
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5050;
 
 app.post("/api", async (req, res) => {
   try {
