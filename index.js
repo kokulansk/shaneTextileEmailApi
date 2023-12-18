@@ -18,9 +18,14 @@ app.post("/api", async (req, res) => {
     const { fullName, email, phone, message } = req.body;
 
     // Assuming EmailSender returns a promise
-    await EmailSender({ fullName, email, phone, message });
+    try {
+      await EmailSender({ fullName, email, phone, message });
 
-    res.json({ msg: "Your message sent successfully" });
+      res.json({ msg: "Your message sent successfully" });
+    }
+    catch (err) {
+      res.json({ msg: err });
+    }
   } catch (error) {
     console.error(error); // Log the error for debugging purposes
     res.status(500).json({ msg: "Internal Server Error ❌" });

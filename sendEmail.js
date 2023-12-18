@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-const Email = (options) => {
+const Email = async (options) => {
   let transpoter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -10,22 +10,23 @@ const Email = (options) => {
       pass: process.env.PASSWORD,
     },
   });
-  
-transpoter.sendMail(options, (err, info) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-  console.log('Email sent:', info);
-});
-  };
 
-  const EmailSender = ({ fullName, email, phone, message }) => {
-    const customerDetailsOptions = {
-      from: `ShoeShop 🛍️`,
-      to: process.env.SEND_TO,
-      subject: 'Message From a customer',
-      html: `
+  transpoter.sendMail(options, (err, info) => {
+    if (err) {
+      console.error(err);
+      return err;
+    }
+    return info;
+    console.log('Email sent:', info);
+  });
+};
+
+const EmailSender = async ({ fullName, email, phone, message }) => {
+  const customerDetailsOptions = {
+    from: `ShoeShop 🛍️`,
+    to: process.env.SEND_TO,
+    subject: 'Message From a customer',
+    html: `
           <div style="width: 100%; background-color: #f3f9ff; padding: 5rem 0">
           <div style="max-width: 700px; background-color: white; margin: 0 auto">
          
@@ -44,13 +45,13 @@ transpoter.sendMail(options, (err, info) => {
         </div>
           `,
 
-        
-    };
-    const shaneTextileResponseOptions={
-      from:`SHEN TEXTILE`,
-      to:email,
-      subject:"Regarding your message to SHANE TEXTILE",
-      html:`
+
+  };
+  const shaneTextileResponseOptions = {
+    from: `SHEN TEXTILE`,
+    to: email,
+    subject: "Regarding your message to SHANE TEXTILE",
+    html: `
       <div style=" padding: 15px; border-top: 4px solid #D97706; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <p style="font-size: 18px; font-weight: bold; color: #1F2937;">
                 Hi ${fullName}, thank you for reaching out to Shane Textile!
@@ -60,10 +61,10 @@ transpoter.sendMail(options, (err, info) => {
             </p>
         </div>
     `
-    }
-  
-    Email( customerDetailsOptions)
-    Email(shaneTextileResponseOptions)
-  };
-  
-  export default EmailSender
+  }
+
+  await Email(customerDetailsOptions)
+  await Email(shaneTextileResponseOptions)
+};
+
+export default EmailSender
