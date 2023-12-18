@@ -1,16 +1,16 @@
 import nodemailer from 'nodemailer';
 
 const Email = (options) => {
-    let transpoter = nodemailer.createTransport({
-      service: 'gmail', 
-      port: 465,
-      secure: true,
+  let transpoter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.USER,
+      pass: process.env.PASSWORD,
+    },
+  });
   
-      auth: {
-        user: process.env.USER, // email
-        pass: process.env.PASSWORD, //password
-      },
-    });
 transpoter.sendMail(options, (err, info) => {
   if (err) {
     console.error(err);
