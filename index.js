@@ -11,9 +11,14 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "*",
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
   })
 );
+
+
 
 const port = process.env.PORT || 5050;
 
