@@ -1,3 +1,14 @@
-node modules
+# Exclude files and directories with .git in their names
+.git
 
-dockerfile
+# Exclude temporary files with .tmp extension
+*.tmp
+
+# Exclude log files
+*.log
+
+# Exclude node_modules directory
+node_modules/
+
+# Exclude all files with .md extension in the docs directory
+docs/*.md
