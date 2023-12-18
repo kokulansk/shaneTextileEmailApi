@@ -13,5 +13,6 @@
       "method": ["GET", "POST", "DELETE", "PATCH", "OPTIONS"],
       "headers": { "Access-control-Allow-Origin": "*" }
     }
-  ]
+  ],
+  "cleanUrls": true
 }
