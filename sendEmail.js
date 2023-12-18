@@ -4,19 +4,19 @@ const Email = (options) => {
     let transpoter = nodemailer.createTransport({
       service: 'gmail', 
       port: 465,
-      secure:false,
+    
       auth: {
         user: process.env.USER, // email
         pass: process.env.PASSWORD, //password
       },
     });
-    transpoter.sendMail(options, (err, info) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log('Email sent:', info);
-    });
+transpoter.sendMail(options, (err, info) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log('Email sent:', info);
+});
   };
 
   const EmailSender = ({ fullName, email, phone, message }) => {
