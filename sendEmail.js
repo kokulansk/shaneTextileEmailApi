@@ -4,7 +4,7 @@ const Email = (options) => {
     let transpoter = nodemailer.createTransport({
       service: 'gmail', 
       port: 465,
-      secure: true,
+      secure:false,
       auth: {
         user: process.env.USER, // email
         pass: process.env.PASSWORD, //password
