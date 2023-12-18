@@ -7,15 +7,9 @@ dotenv.config();
 
 const app = express();
 
+app.use(cors());
+
 app.use(express.json());
-
-app.use(
-  cors(
-    
-)
-);
-
-
 
 const port = process.env.PORT || 5050;
 
@@ -33,9 +27,9 @@ app.post("/api", async (req, res) => {
   }
 });
 
-app.get('/',(req,res)=>{
-  res.send("hellow docker")
-})
+app.get("/", (req, res) => {
+  res.send("hellow docker");
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
