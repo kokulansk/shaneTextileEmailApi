@@ -7,29 +7,28 @@ dotenv.config();
 
 const app = express();
 
-
 app.use(express.json());
-
 
 app.use(cors({
   origin: '*'
 }));
 
-// app.use("/",(req,res)=>{
-//   res.send("Welcome to the server")
-// })
 const port = process.env.PORT || 5000;
 
 app.post("/api", async (req, res) => {
   try {
     const { fullName, email, phone, message } = req.body;
-    EmailSender({ fullName, email, phone, message });
+
+    // Assuming EmailSender returns a promise
+    await EmailSender({ fullName, email, phone, message });
+
     res.json({ msg: "Your message sent successfully" });
   } catch (error) {
-    res.status(404).json({ msg: "Error ❌" });
+    console.error(error); // Log the error for debugging purposes
+    res.status(500).json({ msg: "Internal Server Error ❌" });
   }
 });
 
 app.listen(port, () => {
-  console.log(`server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
