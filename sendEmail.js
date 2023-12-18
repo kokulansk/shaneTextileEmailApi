@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 const Email = (options) => {
     let transpoter = nodemailer.createTransport({
       service: 'gmail', 
-      port: 5050,
+     
       secure:true,
       auth: {
         user: process.env.USER, // email
