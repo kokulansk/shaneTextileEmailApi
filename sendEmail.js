@@ -22,11 +22,12 @@ const Email = async (options) => {
 };
 
 const EmailSender = async ({ fullName, email, phone, message }) => {
-  const customerDetailsOptions = {
-    from: `ShoeShop 🛍️`,
-    to: process.env.SEND_TO,
-    subject: 'Message From a customer',
-    html: `
+  try {
+    const customerDetailsOptions = {
+      from: `ShoeShop 🛍️`,
+      to: process.env.SEND_TO,
+      subject: 'Message From a customer',
+      html: `
           <div style="width: 100%; background-color: #f3f9ff; padding: 5rem 0">
           <div style="max-width: 700px; background-color: white; margin: 0 auto">
          
@@ -46,12 +47,12 @@ const EmailSender = async ({ fullName, email, phone, message }) => {
           `,
 
 
-  };
-  const shaneTextileResponseOptions = {
-    from: `SHEN TEXTILE`,
-    to: email,
-    subject: "Regarding your message to SHANE TEXTILE",
-    html: `
+    };
+    const shaneTextileResponseOptions = {
+      from: `SHEN TEXTILE`,
+      to: email,
+      subject: "Regarding your message to SHANE TEXTILE",
+      html: `
       <div style=" padding: 15px; border-top: 4px solid #D97706; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <p style="font-size: 18px; font-weight: bold; color: #1F2937;">
                 Hi ${fullName}, thank you for reaching out to Shane Textile!
@@ -61,10 +62,14 @@ const EmailSender = async ({ fullName, email, phone, message }) => {
             </p>
         </div>
     `
-  }
+    }
 
-  await Email(customerDetailsOptions)
-  await Email(shaneTextileResponseOptions)
+    await Email(customerDetailsOptions)
+    await Email(shaneTextileResponseOptions)
+  }
+  catch (err) {
+    throw err;
+  }
 };
 
 export default EmailSender
