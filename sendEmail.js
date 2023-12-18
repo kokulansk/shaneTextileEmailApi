@@ -14,7 +14,7 @@ const Email = async (options) => {
   transpoter.sendMail(options, (err, info) => {
     if (err) {
       console.error(err);
-      return err;
+      throw err;
     }
     return info;
     console.log('Email sent:', info);
